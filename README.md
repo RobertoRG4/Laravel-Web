@@ -4,6 +4,7 @@
 
 # Activity Diagram
 <img src= "./public/Tables2.png" alt="License">
+ The activity diagram outlines the order management process for "Halcon." It starts when a customer places an order, which the sales executive records in the system, assigning it the status "Ordered." The warehouse then checks stock availability; if available, the order moves to "In Process," otherwise, Purchasing is notified. Once prepared, the status changes to "In Route," and the route employee loads the materials, uploading a photo before delivery. Upon arrival, the driver unloads the materials, takes a final proof-of-delivery photo, and updates the order status to "Delivered," completing the process.
 
 ## About Laravel
 
