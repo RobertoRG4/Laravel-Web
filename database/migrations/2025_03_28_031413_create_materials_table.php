@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('quantity');
             $table->integer('stock');
+            $table->string('evidence');
             $table->timestamps();
         });
     }
