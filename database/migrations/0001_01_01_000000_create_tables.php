@@ -32,11 +32,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // Crear la tabla orders antes de evidences
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers');
-            $table->string('invoice_number')->nullable()->unique();
-            $table->string('tax_details')->nullable();
+            $table->foreignId('material_id')->constrained('materials'); // Relación con materials
             $table->date('date');
             $table->string('status');
             $table->timestamps();
@@ -50,18 +50,18 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('evidences', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('order_id')->constrained('orders'); // Relación con orders
+            $table->string('photo_url');
+            $table->enum('type', ['LOAD', 'DELIVERY']);
+            $table->timestamps();
+        });
+
         Schema::create('material_order', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained('orders');
             $table->foreignId('material_id')->constrained('materials');
-            $table->timestamps();
-        });
-
-        Schema::create('evidences', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id')->constrained('orders');
-            $table->string('photo_url');
-            $table->enum('type', ['LOAD', 'DELIVERY']);
             $table->timestamps();
         });
 
@@ -77,13 +77,13 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('roles');
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('evidences');
+        Schema::dropIfExists('material_order');
         Schema::dropIfExists('orders');
         Schema::dropIfExists('materials');
-        Schema::dropIfExists('material_order');
-        Schema::dropIfExists('evidences');
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('customers');
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('roles');
     }
 };
