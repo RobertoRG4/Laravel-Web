@@ -52,4 +52,26 @@ class MaterialsController extends Controller
         $material = Materials::findOrFail($id);
         return view('materials.edit', compact('material'));
     }
+    public function update(Request $request, string $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'quantity' => 'required|integer',
+            'stock' => 'required|integer',
+            'evidence' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+    
+        $evidence = $request->file('evidence');
+        $evidenceName = $evidence->getClientOriginalName();
+        $evidence->move(public_path('images'), $evidenceName);
+    
+        Materials::findOrFail($id)->update([
+            'name' => $request->name,
+            'quantity' => $request->quantity,
+            'stock' => $request->stock,
+            'evidence' => $evidenceName,
+        ]);
+    
+        return redirect()->route('materials.index');
+    }
 }
