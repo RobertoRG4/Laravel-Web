@@ -9,7 +9,6 @@ class MaterialsSeeder extends Seeder
 {
     public function run(): void
     {
-        Materials::factory(10)->create();
-    
+        Materials::factory()->count(10)->create();
     }
 }
