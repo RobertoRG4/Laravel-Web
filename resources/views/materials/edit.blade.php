@@ -22,14 +22,14 @@
     <form action="{{ route('materials.update', $material->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <label>Nombre:</label>
+        <label>Name:</label>
         <input type="text" name="name" value="{{ $material->name }}" required>
         <br>
-        <label>Descripción:</label>
+        <label>Description:</label>
         <input type="text" name="description" value="{{ $material->description }}" required>
         <br>
-        <button type="submit">Guardar</button>
-        <a href="{{ route('materials.index') }}">Regresar a la lista</a>
+        <button type="submit">Save</button>
+        <a href="{{ route('materials.index') }}">Go Back</a>
     </form>
 </body>
 </html>

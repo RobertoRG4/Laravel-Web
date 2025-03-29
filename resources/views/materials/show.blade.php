@@ -8,9 +8,9 @@
 <body>
     <h1>Show Materials</h1>
 
-    <p><strong>Nombre:</strong> {{ $material->name }}</p>
-    <p><strong>Descripción:</strong> {{ $material->description }}</p>
+    <p><strong>Name:</strong> {{ $material->name }}</p>
+    <p><strong>Description:</strong> {{ $material->description }}</p>
 
-    <a href="{{ route('materials.index') }}">Regresar a la lista</a>
+    <a href="{{ route('materials.index') }}">Go Back</a>
 </body>
 </html>

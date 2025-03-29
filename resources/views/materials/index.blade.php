@@ -13,9 +13,9 @@
     <table border="1">
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Acciones</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Acctions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,11 +24,11 @@
                     <td>{{ $material->name }}</td>
                     <td>{{ $material->description }}</td>
                     <td>
-                        <a href="{{ route('materials.edit', $material->id) }}">Editar</a>
+                        <a href="{{ route('materials.edit', $material->id) }}">Edit</a>
                         <form action="{{ route('materials.destroy', $material->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Eliminar</button>
+                            <button type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
