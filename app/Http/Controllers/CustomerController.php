@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class CustomerController extends Controller
 {
@@ -11,7 +12,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        return view('customers.index', compact('customers'));
     }
 
     /**
@@ -19,7 +21,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
     /**
@@ -27,7 +29,12 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Customer::create([
+            'name' => $request->name,
+            'customer_number' => $request->customer_number,
+            'address' => $request->address,
+        ]);
+        return to_route('customers.index'); 
     }
 
     /**
@@ -35,7 +42,8 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $customers = Customer::findOrFail($id); 
+        return view('customers.show', compact('customers'));
     }
 
     /**
@@ -43,7 +51,8 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $customers = Customer::findOrFail($id);
+        return view('customers.edit', compact('customers'));
     }
 
     /**
@@ -51,7 +60,18 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255', 
+            'customer_number' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+        ]);
+        $customers = Customer::findOrFail($id); 
+        $customers->update([
+            'name' => $request->name,
+            'customer_number' => $request->customer_number,
+            'address' => $request->address,
+        ]);
+        return to_route('customers.index'); 
     }
 
     /**
@@ -59,6 +79,8 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $customers = Customer::findOrFail($id); 
+        $customers->delete();
+        return to_route('customers.index'); 
     }
 }
