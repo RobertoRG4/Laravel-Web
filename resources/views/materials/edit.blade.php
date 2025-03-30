@@ -8,25 +8,20 @@
 <body>
     <h1>Create Materials</h1>
 
-    <!-- Mostrar errores de validación -->
-    @if ($errors->any())
-        <div style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('materials.update', $material->id) }}" method="POST">
         @csrf
         @method('PUT')
         <label>Name:</label>
         <input type="text" name="name" value="{{ $material->name }}" required>
         <br>
-        <label>Description:</label>
-        <input type="text" name="description" value="{{ $material->description }}" required>
+        <label>Quantity:</label>
+        <input type="text" name="quantity" value="{{ $material->quantity }}" required>
+        <br>
+        <label>Stock:</label>
+        <input type="text" name="stock" value="{{ $material->stock }}" required>
+        <br>
+        <label>Evidence:</label>
+        <input type="text" name="evidence" value="{{ $material->evidence }}" required>
         <br>
         <button type="submit">Save</button>
         <a href="{{ route('materials.index') }}">Go Back</a>

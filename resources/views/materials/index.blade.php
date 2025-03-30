@@ -14,21 +14,25 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Acctions</th>
+                <th>Quantity</th>
+                <th>Stock</th>
+                <th>Evidence</th>
             </tr>
         </thead>
         <tbody>
             @foreach($materials as $material)
                 <tr>
                     <td>{{ $material->name }}</td>
-                    <td>{{ $material->description }}</td>
+                    <td>{{ $material->quantity }}</td>
+                    <td>{{ $material->stock }}</td>
+                    <td>{{ $material->evidence }}</td>
                     <td>
                         <a href="{{ route('materials.edit', $material->id) }}">Edit</a>
+                        <a href="{{ route('materials.show', $material->id) }}">Show</a>
                         <form action="{{ route('materials.destroy', $material->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
+                            <input type="submit" value="Delete" onclick="return confirm('Are you sure?');">
                         </form>
                     </td>
                 </tr>

@@ -17,7 +17,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::select('id', 'name')->get();
-        return view('users.create', compact('roles'));
+        return view('users.index', compact('roles'));
     }
 
     public function store(Request $request)

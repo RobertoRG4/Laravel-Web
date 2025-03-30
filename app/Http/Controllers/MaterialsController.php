@@ -15,27 +15,17 @@ class MaterialsController extends Controller
 
     public function create()
     {
-        return view('materials.create');
+        $materials = Materials::all();
+        return view('materials.create', compact('materials'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'quantity' => 'required|integer',
-            'stock' => 'required|integer',
-            'evidence' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-    
-        $evidence = $request->file('evidence');
-        $evidenceName = $evidence->getClientOriginalName();
-        $evidence->move(public_path('images'), $evidenceName);
-    
         Materials::create([
             'name' => $request->name,
             'quantity' => $request->quantity,
             'stock' => $request->stock,
-            'evidence' => $evidenceName,
+            'evidence' => $request->evidence,
         ]);
     
         return redirect()->route('materials.index');
@@ -73,5 +63,11 @@ class MaterialsController extends Controller
         ]);
     
         return redirect()->route('materials.index');
+    }
+    public function destroy(string $id)
+    {
+        $materials = Materials::findOrFail($id); 
+        $materials->delete();
+        return to_route('materials.index'); 
     }
 }

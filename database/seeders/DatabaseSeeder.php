@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Customer;
+use App\Models\Order;
+use App\Models\Materials;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,13 +14,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesSeeder::class,
             UserSeeder::class,
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            MaterialsSeeder::class,
         ]);
 
         Customer::factory(10)->create();
+        Order::factory(10)->create();
     }
 }
