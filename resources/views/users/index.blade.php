@@ -4,6 +4,7 @@
     <title>User Management</title>
 </head>
 <body>
+    <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
     <h1>User Management</h1>
 
     <hr>

@@ -10,14 +10,14 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::with('role')->get();
         return view('users.index', compact('users'));
     }
 
     public function create()
     {
         $roles = Role::select('id', 'name')->get();
-        return view('users.index', compact('roles'));
+        return view('users.create', compact('roles'));
     }
 
     public function store(Request $request)

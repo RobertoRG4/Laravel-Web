@@ -6,6 +6,7 @@
     <title>Order Index</title>
 </head>
 <body>
+    <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
     <h1>Order Index</h1>
 
     <a href="{{ route('orders.create') }}">Create Order</a>

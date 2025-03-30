@@ -6,6 +6,7 @@
     <title>Index Materials</title>
 </head>
 <body>
+    <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
     <h1>Index Materials</h1>
 
     <a href="{{ route('materials.create') }}">Crear Material</a>
