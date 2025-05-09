@@ -15,3 +15,4 @@ Route::resource('users', UserController::class);
 Route::resource("materials", MaterialsController::class);
 Route::resource("customers", CustomerController::class);
 Route::resource("orders", OrderController::class);
+Route::get('/v1/orders/search', [OrderController::class, 'search']);

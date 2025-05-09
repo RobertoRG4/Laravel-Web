@@ -23,6 +23,25 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+     public function search(Request $request)
+     {
+         // Validamos que 'query' sea un entero (el ID)
+         $request->validate([
+             'query' => 'required|integer',
+         ]);
+     
+         // Aquí cambiamos el where para que compare el ID
+         $orders = Order::where('id', $request->query('query'))->get();
+     
+         if ($orders->isEmpty()) {
+             return response()->json(['message' => 'No orders found'], 404);
+         }
+     
+         return response()->json($orders);
+     }
+     
+
     public function create()
     {
         $customers = Customer::all();
