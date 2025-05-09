@@ -10,6 +10,16 @@
     <a href="{{ route('users.index') }}">All Users</a>
     <hr>
 
+    @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
         <label for="">Name:</label>
@@ -24,6 +34,7 @@
 
         <label for="">Password:</label>
         <input type="password" name="password" required>
+        <small style="color: gray;">Password must be at least 8 characters long.</small>
 
         <br><br>
 
