@@ -1,44 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Materials</title>
-</head>
-<body>
-    <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
-    <h1>Index Materials</h1>
+@extends('layout')
 
-    <a href="{{ route('materials.create') }}">Crear Material</a>
+@section('title', 'Material List')
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Stock</th>
-                <th>Evidence</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($materials as $material)
+@section('content')
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Material List</h1>
+
+    <a href="{{ route('materials.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-6 inline-block">
+        Create Material
+    </a>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+            <thead class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                 <tr>
-                    <td>{{ $material->name }}</td>
-                    <td>{{ $material->quantity }}</td>
-                    <td>{{ $material->stock }}</td>
-                    <td>{{ $material->evidence }}</td>
-                    <td>
-                        <a href="{{ route('materials.edit', $material->id) }}">Edit</a>
-                        <a href="{{ route('materials.show', $material->id) }}">Show</a>
-                        <form action="{{ route('materials.destroy', $material->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" value="Delete" onclick="return confirm('Are you sure?');">
-                        </form>
-                    </td>
+                    <th class="py-3 px-6 text-left">Name</th>
+                    <th class="py-3 px-6 text-left">Quantity</th>
+                    <th class="py-3 px-6 text-left">Stock</th>
+                    <th class="py-3 px-6 text-left">Evidence</th>
+                    <th class="py-3 px-6 text-center">Actions</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</body>
-</html>
+            </thead>
+            <tbody class="text-gray-700 text-sm">
+                @foreach($materials as $material)
+                    <tr class="border-b hover:bg-gray-100">
+                        <td class="py-3 px-6">{{ $material->name }}</td>
+                        <td class="py-3 px-6">{{ $material->quantity }}</td>
+                        <td class="py-3 px-6">{{ $material->stock }}</td>
+                        <td class="py-3 px-6">{{ $material->evidence }}</td>
+                        <td class="py-3 px-6 text-center">
+                            <a href="{{ route('materials.show', $material->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Show</a>
+                            <a href="{{ route('materials.edit', $material->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded">Edit</a>
+                            <form action="{{ route('materials.destroy', $material->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onclick="return confirm('Are you sure?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection

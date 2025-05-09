@@ -1,43 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Index</title>
-</head>
-<body>
-    <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
-    <h1>Customer Index</h1>
+@extends('layout')
 
-    <a href="{{ route('customers.create') }}">Create Customer</a>
+@section('title', 'Customer List')
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Customer Number</th>
-                <th>Address</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($customers as $customers)
+@section('content')
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Customer List</h1>
+
+    <a href="{{ route('customers.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-6 inline-block">
+        Create Customer
+    </a>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+            <thead class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                 <tr>
-                    <td>{{ $customers->name }}</td>
-                    <td>{{ $customers->customer_number }}</td>
-                    <td>{{ $customers->address }}</td>
-                    <td>
-                        <a href="{{ route('customers.show', $customers->id) }}">Show</a>
-                        <a href="{{ route('customers.edit', $customers->id) }}">Edit</a>
-                        <form action="{{ route('customers.destroy', $customers->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
+                    <th class="py-3 px-6 text-left">Name</th>
+                    <th class="py-3 px-6 text-left">Customer Number</th>
+                    <th class="py-3 px-6 text-left">Address</th>
+                    <th class="py-3 px-6 text-center">Actions</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</body>
-</html>
+            </thead>
+            <tbody class="text-gray-700 text-sm">
+                @foreach($customers as $customer)
+                    <tr class="border-b hover:bg-gray-100">
+                        <td class="py-3 px-6">{{ $customer->name }}</td>
+                        <td class="py-3 px-6">{{ $customer->customer_number }}</td>
+                        <td class="py-3 px-6">{{ $customer->address }}</td>
+                        <td class="py-3 px-6 text-center">
+                            <a href="{{ route('customers.show', $customer->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Show</a>
+                            <a href="{{ route('customers.edit', $customer->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded">Edit</a>
+                            <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onclick="return confirm('Are you sure?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection

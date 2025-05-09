@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Materials</title>
-</head>
-<body>
-    <h1>Show Materials</h1>
+@extends('layout')
 
-    <p><strong>Name:</strong> {{ $material->name }}</p>
-    <p><strong>Quantity:</strong> {{ $material->quantity }}</p>
-    <p><strong>Stock:</strong> {{ $material->stock }}</p>
-    <p><strong>Evidence:</strong> {{ $material->evidence }}</p>
+@section('title', 'Material Details')
 
-    <a href="{{ route('materials.index') }}">Go Back</a>
-</body>
-</html>
+@section('content')
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Material Details</h1>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <p class="mb-4"><strong class="text-gray-700">Name:</strong> {{ $material->name }}</p>
+        <p class="mb-4"><strong class="text-gray-700">Quantity:</strong> {{ $material->quantity }}</p>
+        <p class="mb-4"><strong class="text-gray-700">Stock:</strong> {{ $material->stock }}</p>
+        <p class="mb-4"><strong class="text-gray-700">Evidence:</strong> {{ $material->evidence }}</p>
+    </div>
+
+    <a href="{{ route('materials.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-4 inline-block">
+        Go Back
+    </a>
+@endsection

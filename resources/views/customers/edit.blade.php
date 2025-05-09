@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Customer</title>
-</head>
-<body>
-    <h1>Edit Customer</h1>
+@extends('layout')
 
-    <!-- Mostrar errores de validación -->
+@section('title', 'Edit Customer')
+
+@section('content')
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Edit Customer</h1>
+
     @if ($errors->any())
-        <div style="color: red;">
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -19,20 +15,26 @@
         </div>
     @endif
 
-    <form action="{{ route('customers.update', $customers->id) }}" method="POST">
+    <form action="{{ route('customers.update', $customers->id) }}" method="POST" class="bg-white p-6 rounded-lg shadow-md">
         @csrf
         @method('PUT')
-        <label>Name:</label>
-        <input type="text" name="name" value="{{ $customers->name }}" required>
-        <br>
-        <label>Customer Number:</label>
-        <input type="text" name="customer_number" value="{{ $customers->customer_number }}" required>
-        <br>
-        <label>Address:</label>
-        <input type="text" name="address" value="{{ $customers->address }}" required>
-        <br>
-        <button type="submit">Save</button>
-        <a href="{{ route('customers.index') }}">Go Back</a>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Name:</label>
+            <input type="text" name="name" class="w-full border-gray-300 rounded-lg shadow-sm" value="{{ $customers->name }}" required>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Customer Number:</label>
+            <input type="text" name="customer_number" class="w-full border-gray-300 rounded-lg shadow-sm" value="{{ $customers->customer_number }}" required>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Address:</label>
+            <input type="text" name="address" class="w-full border-gray-300 rounded-lg shadow-sm" value="{{ $customers->address }}" required>
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Update
+        </button>
+        <a href="{{ route('customers.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+            Go Back
+        </a>
     </form>
-</body>
-</html>
+@endsection

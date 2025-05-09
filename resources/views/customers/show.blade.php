@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Customer</title>
-</head>
-<body>
-    <h1>Show Customer</h1>
+@extends('layout')
 
-    <p><strong>Name:</strong> {{ $customers->name }}</p>
-    <p><strong>Customer Number:</strong> {{ $customers->customer_number }}</p>
-    <p><strong>Address:</strong> {{ $customers->address }}</p>
+@section('title', 'Customer Details')
 
-    <a href="{{ route('customers.index') }}">Go Back</a>
-</body>
-</html>
+@section('content')
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Customer Details</h1>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <p class="mb-4"><strong class="text-gray-700">Name:</strong> {{ $customers->name }}</p>
+        <p class="mb-4"><strong class="text-gray-700">Customer Number:</strong> {{ $customers->customer_number }}</p>
+        <p class="mb-4"><strong class="text-gray-700">Address:</strong> {{ $customers->address }}</p>
+    </div>
+
+    <a href="{{ route('customers.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-4 inline-block">
+        Go Back
+    </a>
+@endsection
