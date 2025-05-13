@@ -18,28 +18,28 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@halcon.com',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('admin123'),
             'role_id' => $roles['Sales'] ?? null,
         ]);
 
         User::create([
             'name' => 'Purchasing',
             'email' => 'purchasing@halcon.com',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('purchasing123'),
             'role_id' => $roles['Purchasing'] ?? null,
         ]);
 
         User::create([
             'name' => 'Warehouse ',
             'email' => 'warehouse@halcon.com',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('warehouse123'),
             'role_id' => $roles['Warehouse'] ?? null,
         ]);
 
         User::create([
             'name' => 'Route',
             'email' => 'route@halcon.com',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('route123'),
             'role_id' => $roles['Route'] ?? null,
         ]);
     }
