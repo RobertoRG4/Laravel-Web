@@ -7,7 +7,7 @@ Aquí están las credenciales de acceso para los distintos roles en el sistema:
 | Admin      | admin@halcon.com      | admin123    |
 | Compras    | purchasing@halcon.com | purchasing123 |
 | Almacén    | warehouse@halcon.com  | warehouse123 |
-| Sales      | route@halcon.com      | sales123    |
+| Sales      | sales@halcon.com    | sales123    |
 
 
 
