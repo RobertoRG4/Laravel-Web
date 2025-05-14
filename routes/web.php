@@ -25,9 +25,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Rutas del CRUD de usuarios
-Route::resource('users', UserController::class);
-Route::resource("materials", MaterialsController::class);
-Route::resource("customers", CustomerController::class);
-Route::resource("orders", OrderController::class);
+
+Route::middleware(['auth', 'role:Admin'])->resource('users', UserController::class);
+Route::middleware(['auth', 'role:Purchasing'])->resource('customers', CustomerController::class);
+Route::middleware(['auth', 'role:Warehouse'])->resource('materials', MaterialsController::class);
+Route::middleware(['auth', 'role:Sales'])->resource('orders', OrderController::class);
 
