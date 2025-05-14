@@ -11,15 +11,13 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-       
         $roles = DB::table('roles')->pluck('id', 'name');
 
-     
         User::create([
             'name' => 'Admin',
             'email' => 'admin@halcon.com',
             'password' => Hash::make('admin123'),
-            'role_id' => $roles['Sales'] ?? null,
+            'role_id' => $roles['Admin'] ?? null,
         ]);
 
         User::create([
@@ -30,17 +28,17 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Warehouse ',
+            'name' => 'Warehouse',
             'email' => 'warehouse@halcon.com',
             'password' => Hash::make('warehouse123'),
             'role_id' => $roles['Warehouse'] ?? null,
         ]);
 
         User::create([
-            'name' => 'Route',
-            'email' => 'route@halcon.com',
-            'password' => Hash::make('route123'),
-            'role_id' => $roles['Route'] ?? null,
+            'name' => 'Sales',
+            'email' => 'sales@halcon.com',
+            'password' => Hash::make('sales123'),
+            'role_id' => $roles['Sales'] ?? null,
         ]);
     }
 }
