@@ -7,9 +7,9 @@ Aquí están las credenciales de acceso para los distintos roles en el sistema:
 | Admin      | admin@halcon.com      | admin123    |
 | Compras    | purchasing@halcon.com | purchasing123 |
 | Almacén    | warehouse@halcon.com  | warehouse123 |
-| Ruta       | route@halcon.com      | route123    |
+| Sales      | route@halcon.com      | sales123    |
 
-⚠ **Nota**: Por seguridad, se recomienda almacenar credenciales en variables de entorno en lugar de exponerlas en archivos públicos.
+
 
 # Figma
 
